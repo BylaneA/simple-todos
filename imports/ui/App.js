@@ -23,12 +23,8 @@ class App extends Component {
     //Find the text field via the React preventDefault
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-    Tasks.insert({
-      text,
-      createdAt: new Date(), //current time
-      owner: Meteor.userId(),  //_id of logged in user
-      username: Meteor.user().username,
-    });
+    //insert !
+    Meteor.call('tasks.insert', text);
 
     //clear form
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
